@@ -19,7 +19,11 @@
                 <target>17</target>
             </configuration>
         </plugin>
-
+        <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.0.0.4389</version>
+        </plugin>
         <!-- Ajout du plugin Maven Surefire avec la version compatible -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>

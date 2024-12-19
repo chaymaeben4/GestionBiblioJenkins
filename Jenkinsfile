@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Quality Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube') { // Utilise le nom configuré dans SonarQube Servers
                     sh '${MAVEN_HOME}/bin/mvn sonar:sonar'
                 }
             }
@@ -34,14 +34,10 @@ pipeline {
     }
     post {
         success {
-            emailext to: 'chaymaebenlagraoui47@example.com',
-                subject: 'Build Success',
-                body: 'Le build a été complété avec succès.'
+            echo 'Build réussi'
         }
         failure {
-            emailext to: 'votre-email@example.com',
-                subject: 'Build Failed',
-                body: 'Le build a échoué.'
+            echo 'Build échoué'
         }
     }
 }
