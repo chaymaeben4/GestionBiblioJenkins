@@ -13,7 +13,25 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
       - sonarqube_extensions:/opt/sonarqube/extensions
 
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: Chben97531@@
+      MYSQL_DATABASE: library
+      MYSQL_USER: user
+      MYSQL_PASSWORD: library123
+    ports:
+      - "3307:3306"
+    networks:
+      - my-network
+    restart: always
+
 volumes:
   sonarqube_data:
   sonarqube_logs:
   sonarqube_extensions:
+
+networks:
+  my-network:
+    driver: bridge

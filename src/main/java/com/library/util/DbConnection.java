@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/library";
-    private static final String USER = "root";
-    private static final String PASSWORD = "Chben97531@@";
+    private static final String URL = "jdbc:mysql://localhost:3307/library";  // Utilisez l'IP du conteneur
+    private static final String USER = "user";
+    private static final String PASSWORD = "library123";
+
     private static  Connection dbConnection ;
 
     private  DbConnection() {
@@ -22,6 +23,7 @@ public class DbConnection {
             dbConnection = DriverManager.getConnection(URL, USER, PASSWORD);
             return dbConnection;
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e);
                 throw new SQLException("Database connection error", e);
         }
 
