@@ -13,13 +13,16 @@ public class StudentDAO {
             }
 
     public void addStudent(Student student) {
-        String query = "INSERT INTO students (id, name) VALUES (?, ?)";
+        String query = "INSERT INTO students (id, name, mail) VALUES (?, ?,?)";
         try (PreparedStatement statement = DbConnection.getConnection().prepareStatement(query)) {
             statement.setInt(1, student.getId());
             statement.setString(2, student.getName());
+            statement.setString(3, student.getMail());
             statement.executeUpdate();
+            System.out.println("student ajoute :"+ student.getId());
         } catch (SQLException e) {
             System.err.println("Error while adding student");
+            System.out.println(e);
         }
     }
 
@@ -30,9 +33,6 @@ public class StudentDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return new Student(resultSet.getInt("id"), resultSet.getString("name"));
-                } else {
-                    System.err.println("No student found with this ID");
-
                 }
             }
         } catch (SQLException e) {
@@ -74,6 +74,7 @@ public class StudentDAO {
         try (PreparedStatement statement = DbConnection.getConnection().prepareStatement(query)) {
             statement.setInt(1, id);
             statement.executeUpdate();
+            System.out.println("student deleted");
         } catch (SQLException e) {
             System.err.println("Error while deleting student");
 

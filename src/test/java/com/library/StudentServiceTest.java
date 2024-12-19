@@ -40,7 +40,7 @@ class StudentServiceTest {
     @Test
     void testGetAllStudents() {
         studentService.addStudent(new Student(10, "Alice","meryam@gmail.com"));
-        studentService.addStudent(new Student(2, "Bob","meryam@gmail.com"));
+        studentService.addStudent(new Student(2, "Bob","bob@gmail.com"));
         assertEquals(2, studentDAO.getAllStudents().size());
     }
 }

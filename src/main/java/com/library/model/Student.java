@@ -21,6 +21,11 @@ public class Student {
         this.mail = mail;
     }
 
+    public Student(String name, String mail) {
+        this.name = name;
+        this.mail = mail;
+    }
+
     // Getters et Setters
     public int getId() {
         return id;

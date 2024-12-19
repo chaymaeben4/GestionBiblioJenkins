@@ -61,7 +61,7 @@ public class BorrowDAO {
 
 
     public String addBorrow(Borrow borrow) {
-        String query = "INSERT INTO borrows(id,member, book, borrow_date, return_date) VALUES (?, ?, ?, ?,?)";
+        String query = "INSERT INTO borrows(id,student_id, book_id, borrowDate, returnDate) VALUES (?, ?, ?, ?,?)";
         if(new StudentService().findStudentById(borrow.getStudent().getId()) == null || new BookDAO().getBookById(borrow.getBook().getId()) == null){
             return "student or book not found.";
         }
@@ -75,6 +75,7 @@ public class BorrowDAO {
             stmt.executeUpdate();
             return "book borrowed successfully!";
         } catch (SQLException e) {
+            System.out.println(e);
             return "Error while borrowing the book !";
         }
     }
@@ -85,7 +86,9 @@ public class BorrowDAO {
             stmt.executeUpdate();
             return "book returned successfully!";
         } catch (SQLException e) {
+            System.out.println(e);
             return "Error during book return !";
+
         }
     }
     public String truncate() {
